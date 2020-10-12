@@ -1,6 +1,6 @@
 package org.launchcode.happyhour.models.dto;
 
-public class RegisterFormDTO extends LoginFormDTO {
+public class SignUpFormDTO extends LoginFormDTO {
 
     private String verifyPassword;
 

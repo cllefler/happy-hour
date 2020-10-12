@@ -3,30 +3,31 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 
-<header th:replace="fragments :: head"></header>
+<header th:replace="fragments :: page-header"></header>
 
 <title>Register</title>
 
-<form method="post">
+<form class="signup-form" method="post">
     <div class="form-group">
-        <label style="padding-top:60px;">Username
-            <input class="form-control" th:field="${registerFormDTO.username}" />
+        <label class="signup">Username
+            <input class="form-control" th:field="${signUpFormDTO.username}" />
         </label>
-        <p class="error" th:errors="${registerFormDTO.username}"></p>
+        <p class="error" th:errors="${signUpFormDTO.username}"></p>
     </div>
     <div class="form-group">
-        <label>Password
-            <input class="form-control" th:field="${registerFormDTO.password}" type="password" />
+        <label class="signup">Password
+            <input class="form-control" th:field="${signUpFormDTO.password}" type="password" />
         </label>
-        <p class="error" th:errors="${registerFormDTO.password}"></p>
+        <p class="error" th:errors="${signUpFormDTO.password}"></p>
     </div>
     <div class="form-group">
-        <label>Verify Password
-            <input class="form-control" th:field="${registerFormDTO.verifyPassword}" type="password" />
+        <label class="signup">Verify Password
+            <input class="form-control" th:field="${signUpFormDTO.verifyPassword}" type="password" />
         </label>
     </div>
-
-    <input type="submit" class="btn btn-primary" value="Sign up" />
+    <div class="form-group">
+        <button type="submit" class="btn"><a>Signup</a></button>
+    </div>
 </form>
 
 </body>

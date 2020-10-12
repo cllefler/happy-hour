@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/">
-<head th:fragment="head">
-    <meta charset="UTF-8">
-    <title>Happy Hour</title>
-</head>
-<body>
-<title>Happy Hour</title>
-<header>Happy Hour</header>
+    <html xmlns:th="http://www.thymeleaf.org/">
+    <head th:fragment="head">
+        <meta charset="UTF-8"/>
+        <link th:href="@{/styles.css}" rel="stylesheet" />
+    </head>
+    <body>
+    <header>
+        <nav th:fragment="page-header" class="navbar">
+            <div class="nav_links">
+                <li class="nav-brand"><a th:href="@{/}">Happy Hour</a></li>
+            <div class="nav_right">
+                <li><a th:href="@{/login}">Login</a></li>
+                <li><a th:href="@{/signup}">Sign Up</a></li>
+            </div>
+            </div>
+        </nav>
+    </header>
 
 </body>
 </html>

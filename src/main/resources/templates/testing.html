@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <link th:href="@{/styles.css}" rel="stylesheet" />
+    <script th:src="@{https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js}" type="text/javascript"></script>
+    <link th:href="@{https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css}" rel="stylesheet" type="text/css" />
+</head>
+<body class="container">
+<header th:replace="fragments :: page-header"></header>
+
+<div id='map' style='width: 500px; height: 400px;'></div>
+<style>
+    body {
+      margin: 10;
+      padding: 10;
+    }
+
+    #map {
+      position: relative;
+      top: 100px;
+      left: 900px;
+      width: 100%;
+    }
+  </style>
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiY2xsZWZsZXIiLCJhIjoiY2tmMGprdWZwMDF6djJ5cjE4Y3hnMWJseiJ9.LpQTQKNREHm1ISEwBdMROg';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [-122.25948, 37.87221],
+    zoom: 12,
+  });
+</script>
+
+</body>
+</html>
+GET("https://api.mapbox.com/geocoding/v5/mapbox.places/address.json?access_token=pk.eyJ1IjoiY2xsZWZsZXIiLCJhIjoiY2tleTJhNmhsMzR4eDJxbGdhcDdsNDRreCJ9.Zdsf442gpmjgV7ZMsdFZwA")

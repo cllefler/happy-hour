@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <link th:href="@{/styles.css}" rel="stylesheet" />
+</head>
+<body class="container">
+<header>
+    <nav th:fragment="page-header" class="navbar">
+        <div class="nav_links">
+            <li class="nav-brand"><a th:href="@{/}">Happy Hour</a></li>
+            <div class="nav_right">
+                <li><a th:href="@{/profile}">Profile</a></li>
+                <li><a th:href="@{/logout}">Logout</a></li>
+            </div>
+        </div>
+    </nav>
+</header>
+
+</body>
+</html>

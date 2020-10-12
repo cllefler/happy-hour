@@ -3,7 +3,7 @@ package org.launchcode.happyhour.controllers;
 import org.launchcode.happyhour.models.User;
 import org.launchcode.happyhour.models.data.UserRepository;
 import org.launchcode.happyhour.models.dto.LoginFormDTO;
-import org.launchcode.happyhour.models.dto.RegisterFormDTO;
+import org.launchcode.happyhour.models.dto.SignUpFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,14 +44,14 @@ public class AuthenticationController {
     }
 
     @GetMapping("/signup")
-    public String displayRegistrationForm(Model model) {
-        model.addAttribute(new RegisterFormDTO());
+    public String displaySignupForm(Model model) {
+        model.addAttribute(new SignUpFormDTO());
         model.addAttribute("title", "Sign up");
         return "signup";
     }
 
     @PostMapping("/signup")
-    public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO,
+    public String processSignUpForm(@ModelAttribute @Valid SignUpFormDTO signUpFormDTO,
                                           Errors errors, HttpServletRequest request,
                                           Model model) {
 
@@ -60,7 +60,7 @@ public class AuthenticationController {
             return "signup";
         }
 
-        User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
+        User existingUser = userRepository.findByUsername(signUpFormDTO.getUsername());
 
         if (existingUser != null) {
             errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
@@ -68,19 +68,19 @@ public class AuthenticationController {
             return "signup";
         }
 
-        String password = registerFormDTO.getPassword();
-        String verifyPassword = registerFormDTO.getVerifyPassword();
+        String password = signUpFormDTO.getPassword();
+        String verifyPassword = signUpFormDTO.getVerifyPassword();
         if (!password.equals(verifyPassword)) {
             errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
             model.addAttribute("title", "Sign up");
             return "signup";
         }
 
-        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword());
+        User newUser = new User(signUpFormDTO.getUsername(), signUpFormDTO.getPassword());
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
-        return "redirect:";
+        return "home";
     }
 
     @GetMapping("/login")
@@ -118,13 +118,13 @@ public class AuthenticationController {
 
         setUserInSession(request.getSession(), theUser);
 
-        return "redirect:";
+        return "home";
     }
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request){
         request.getSession().invalidate();
-        return "redirect:/login";
+        return "redirect:";
     }
 }
 
